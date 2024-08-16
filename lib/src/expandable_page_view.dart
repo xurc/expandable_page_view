@@ -274,7 +274,7 @@ class _ExpandablePageViewState extends State<ExpandablePageView> {
     }
 
     _previousPage = _previousPage.clamp(0, max(0, _sizes.length - 1));
-    _sizes[_currentPage] = currentPageSize;
+    if (!_sizes.isEmpty) _sizes[_currentPage] = currentPageSize;
   }
 
   Duration _getDuration() {
