@@ -261,7 +261,7 @@ class _ExpandablePageViewState extends State<ExpandablePageView> {
   }
 
   void _reinitializeSizes() {
-    final currentPageSize = _sizes[_currentPage];
+    final currentPageSize = _sizes.isEmpty ? 0.0 : _sizes[_currentPage];
     _sizes = _prepareSizes();
 
     if (_currentPage >= _sizes.length) {
