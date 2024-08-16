@@ -195,9 +195,9 @@ class _ExpandablePageViewState extends State<ExpandablePageView> {
   bool _shouldDisposePageController = false;
   bool _firstPageLoaded = false;
 
-  double get _currentSize => _sizes[_currentPage];
+  double get _currentSize => _sizes.isEmpty ? 0 : _sizes[_currentPage];
 
-  double get _previousSize => _sizes[_previousPage];
+  double get _previousSize => _sizes.isEmpty ? 0 : _sizes[_previousPage];
 
   bool get isBuilder => widget.itemBuilder != null;
 
@@ -266,7 +266,7 @@ class _ExpandablePageViewState extends State<ExpandablePageView> {
 
     if (_currentPage >= _sizes.length) {
       final differenceFromPreviousToCurrent = _previousPage - _currentPage;
-      _currentPage = _sizes.length - 1;
+      _currentPage = max(0, _sizes.length - 1);
       widget.onPageChanged?.call(_currentPage);
 
       _previousPage = (_currentPage + differenceFromPreviousToCurrent)
